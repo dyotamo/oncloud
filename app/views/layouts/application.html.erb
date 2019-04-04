@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Oncloud</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body class="container-fluid" style="margin-top: 20px;">
+    <% if notice %>
+      <p id="notice" class="alert alert-info">
+        <%= notice %>
+      </p>
+    <% end %>
+    <% if alert %>
+      <p id="alert" class="alert alert-danger">
+        <%= alert %>
+      </p>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

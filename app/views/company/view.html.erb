@@ -1,0 +1,54 @@
+<%= render "shared/header", value: "" %>
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-6">
+    <div id="user-profile-2" class="user-profile container">
+      <div class="tabbable">
+        <div class="tab-content no-border padding-24">
+          <div id="home" class="tab-pane in active">
+            <h4 class="blue">
+              <strong class="middle"><%= @company.name %></strong>
+            </h4>
+            <div class="profile-user-info">
+              <div class="profile-info-row">
+                <div class="profile-info-name"> Location </div>
+                <div class="profile-info-value">
+                  <i class="fa fa-map-marker light-orange bigger-110"></i>
+                  <span><%= @company.address %></span>
+                </div>
+              </div>
+              <div class="profile-info-row">
+                <div class="profile-info-name"> City </div>
+                <div class="profile-info-value">
+                  <span><%= @company.city %></span>
+                </div>
+              </div>
+              <div class="profile-info-row">
+                <div class="profile-info-name"> Category </div>
+                <div class="profile-info-value">
+                  <span><%= @company.category %></span>
+                </div>
+              </div>
+              <div class="profile-info-row">
+                <div class="profile-info-name"> Description </div>
+                <div class="profile-info-value">
+                  <span><%= @company.description %></span>
+                </div>
+              </div>
+            </div>
+            <div class="hr hr-8 dotted"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h2>Related companies</h2>
+    <ul>
+      <% Company.where(category: @company.category).each do |related|%>
+        <li><%= link_to related.name, company_path(related.slug) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
