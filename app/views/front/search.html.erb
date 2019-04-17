@@ -4,9 +4,9 @@
   </div>
   <div class="col-md-6">
     <% if @results.empty? %>
-      <h2>No results for <strong><%= @q %></strong></h2>
+      <h3>No results for <strong><%= @q %></strong></h3>
     <% else %>
-      <span>About <%= number_with_delimiter(@results.count, delimiter: ".") %> results found</span>
+      <span>About <%= pluralize(@results.count, 'result') %> found</span>
     <% end %>
     <% @results.each do |company| %>
       <div style="margin-bottom: 20px;">
