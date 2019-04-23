@@ -5,6 +5,7 @@ class CreateCompanies < ActiveRecord::Migration[5.2]
       t.string :slug
       t.text :description
       t.string :address
+      t.string :website
       t.float :latitude
       t.float :longitude
       t.string :city

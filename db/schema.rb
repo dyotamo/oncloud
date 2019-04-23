@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2019_04_03_104441) do
     t.string "slug"
     t.text "description"
     t.string "address"
+    t.string "website"
     t.float "latitude"
     t.float "longitude"
     t.string "city"

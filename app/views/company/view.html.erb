@@ -26,6 +26,12 @@
         </div>
       </div>
       <div>
+        <div class="company-info-name"> Website </div>
+        <div class="company-info-value">
+          <span><%= link_to @company.website, @company.website, target: "_blank" %></span>
+        </div>
+      </div>
+      <div>
         <div class="company-info-name"> About </div>
         <div class="company-info-value">
           <span><%= @company.description %></span>
