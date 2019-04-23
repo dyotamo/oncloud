@@ -17,11 +17,11 @@ class FrontController < ApplicationController
     # Evaluate the query time
     @exc = Benchmark.measure {
       model.column_names.each do |column|
-        rs.concat(model.where(column + " like ?", "%" + query + "%"))
+        # rs.concat(model.where(column + " like ?", "%" + query + "%"))
       end
 
       # Casting the array into relation
-      rs = model.where
+      rs = model.all
     }
 
     rs.paginate(page: params[:page], per_page: page_number)
