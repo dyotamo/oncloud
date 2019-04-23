@@ -16,9 +16,7 @@ class FrontController < ApplicationController
 
     # Evaluate the query time
     @exc = Benchmark.measure {
-      model.column_names.each do |column|
-        rs = rs.or(model.where(column + " like ?", "%" + query + "%"))
-      end
+        rs = model.where("description like ?", "%" + query + "%"))
     }
 
     rs.paginate(page: params[:page], per_page: page_number)
