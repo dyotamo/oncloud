@@ -21,7 +21,7 @@ class FrontController < ApplicationController
       end
 
       # Casting the array into relation
-      rs = model.where(id: rs.pluck(:id))
+      rs = model.where
     }
 
     rs.paginate(page: params[:page], per_page: page_number)
