@@ -1,22 +1,20 @@
 <%= render "shared/header", value: @q %>
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-md-1">
   </div>
   <div class="col-md-6">
     <% if @results.empty? %>
-      <h3>No results for <strong><%= @q %></strong></h3>
+      <h4>No results for <strong><%= @q %></strong></h4>
     <% else %>
-      <span>About <%= pluralize(@results.count, 'result') %> found</span>
+      <span>About <strong><%= pluralize(@results.count, 'result') %></strong> found (<%= number_with_precision(@exc.stime, precision: 6) %> seconds)</span>
     <% end %>
     <% @results.each do |company| %>
       <div style="margin-bottom: 20px;">
-        <h3>
+        <h4>
           <%= link_to company.name, company_path(slug: company.slug) %>
-        </h3>
+        </h4>
         <div>
-          <cite>
-            <%= company.address %>
-          </cite>
+          <%= company.address %>
         </div>
         <div>
           <% if !company.description.empty? %>

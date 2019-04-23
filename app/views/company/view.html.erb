@@ -1,6 +1,6 @@
 <%= render "shared/header", value: "" %>
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-md-1">
   </div>
   <div class="col-md-5">
     <h4>
@@ -26,21 +26,15 @@
         </div>
       </div>
       <div>
-        <div class="company-info-name"> Description </div>
+        <div class="company-info-name"> About </div>
         <div class="company-info-value">
           <span><%= @company.description %></span>
         </div>
       </div>
     </div>
-    <hr/>
-    <div>
-      <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?" + 
-      "zoom=17&size=800x400&center=#{@company.latitude},#{@company.longitude}&" + 
-      "key=#{Rails.application.credentials.google_maps_api_key}", alt: "Map of #{@company.name}", class: "img-responsive" %>
-    </div>
   </div>
-  <div class="col-md-2">
-    <h4>Related companies</h4>
+  <div class="col-md-2 well">
+    <h4>Related companies:</h4>
     <ul>
       <% Company.where(category: @company.category).shuffle[0..5].each do |related|%>
         <li><%= link_to related.name, company_path(related.slug) %></li>
