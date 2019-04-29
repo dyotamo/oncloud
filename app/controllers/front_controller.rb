@@ -1,4 +1,3 @@
-# by Dássone Dyotamo ...
 class FrontController < ApplicationController
   def search
     q = params[:q]
