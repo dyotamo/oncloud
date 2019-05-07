@@ -6,7 +6,7 @@ class FrontController < ApplicationController
     @q = q.strip if !q.nil?
 
     redirect_to root_path if @q.empty?
-    @results = full_search(Company, @q, 10)
+    @results = full_search(Company, @q, 7)
   end
 
   private
