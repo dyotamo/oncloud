@@ -12,16 +12,11 @@ class FrontController < ApplicationController
   private
 
   def full_search(model, query, page_number)
-    rs = []
+    rs = model.none
 
     # Evaluate the query time
     @exc = Benchmark.measure {
-      model.column_names.each do |column|
-        # rs.concat(model.where(column + " like ?", "%" + query + "%"))
-      end
-
-      # Casting the array into relation
-      rs = model.all
+      rs = model.where("name like ?", "%" + query + "%")
     }
 
     rs.paginate(page: params[:page], per_page: page_number)
