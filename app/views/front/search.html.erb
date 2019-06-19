@@ -1,30 +1,35 @@
+<% title "Resultados para " + @q %>
 <%= render "shared/header", value: @q %>
 <div class="row">
   <div class="col-md-1">
   </div>
   <div class="col-md-6">
     <% if @results.empty? %>
-      <h4>No results for <strong><%= @q %></strong></h4>
+      <h4>Não foram encontrados resultados para <strong><%= @q %></strong></h4>
     <% else %>
-      <span>About <strong><%= pluralize(@results.count, 'result') %></strong> found (<%= number_with_precision(@exc.stime, precision: 6) %> seconds)</span>
+      <span>
+        Aproximadamente <%= pluralize(@results.count, 'resultado') %> (<%= number_with_precision(@exc.stime, precision: 6) %> segundos)
+      </span>
     <% end %>
-    <% @results.each do |company| %>
-      <div style="margin-bottom: 20px;">
-        <h4>
-          <%= link_to company.name, company_path(slug: company.slug) %>
-        </h4>
-        <div>
-          <%= company.address %>
+    <div style="margin-top: 20px;">
+      <% @results.each do |company| %>
+        <div style="margin-bottom: 20px;">
+          <h4>
+            <%= link_to company.name, company_path(slug: company.slug) %>
+          </h4>
+          <div>
+            <%= company.address %>
+          </div>
+          <div>
+            <% if !company.description.empty? %>
+              <%= company.description %>
+            <% else %>
+              (Sem detalhes) 
+            <% end %>
+          </div>
         </div>
-        <div>
-          <% if !company.description.empty? %>
-            <%= company.description %>
-          <% else %>
-            (No description) 
-          <% end %>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
     <%= will_paginate @results, renderer: BootstrapPagination::Rails %>
   </div>
 </div>

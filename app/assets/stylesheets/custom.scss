@@ -1,18 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
 //Import bootstrap-sprockets
 @import "bootstrap-sprockets";
 
 // Import cerulean variables
-@import "bootswatch/flatly/variables";
+@import "bootswatch/lumen/variables";
 
 // Then bootstrap itself
 @import "bootstrap";
 
 // And finally bootswatch style itself
-@import "bootswatch/flatly/bootswatch";
+@import "bootswatch/lumen/bootswatch";
+
+* {
+  font-family: "Roboto", sans-serif;
+}
 
 .field_with_errors {
   @extend .has-error;
   .form-control {
     color: $state-danger-text;
   }
+}
+
+.company-info-name {
+  font-weight: bold;
 }

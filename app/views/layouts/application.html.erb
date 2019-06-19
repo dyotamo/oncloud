@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Oncloud</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body class="container-fluid" style="margin-top: 20px;">
-    <% if notice %>
-      <p id="notice" class="alert alert-info">
-        <%= notice %>
-      </p>
-    <% end %>
-    <% if alert %>
-      <p id="alert" class="alert alert-danger">
-        <%= alert %>
-      </p>
-    <% end %>
-    <%= yield %>
-  </body>
-</html>
+    <title>
+      <%= if content_for?(:title) then yield(:title) + ' | ' end %>
+        Dr. Busca
+      </title>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body class="container-fluid" style="margin-top: 20px;">
+      <% if notice %>
+        <p id="notice" class="alert alert-info">
+          <%= notice %>
+        </p>
+      <% end %>
+      <% if alert %>
+        <p id="alert" class="alert alert-danger">
+          <%= alert %>
+        </p>
+      <% end %>
+      <%= yield %>
+    </body>
+  </html>
