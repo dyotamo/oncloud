@@ -8,11 +8,11 @@
 
 require "faker"
 
-500.times do
+100.times do
   Company.create(name: Faker::Company.name,
                  description: Faker::Lorem.paragraph,
                  address: Faker::Address.full_address,
-                 website: "https://" + Faker::Internet.domain_name,
+                 website: Faker::Internet.domain_name,
                  city: Faker::Address.city,
                  category: Faker::IndustrySegments.industry,
                  latitude: Faker::Address.latitude,
