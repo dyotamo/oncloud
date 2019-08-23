@@ -1,11 +1,9 @@
 <% title @company.name %>
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.css' rel='stylesheet' />
 <%= render "shared/header", value: "" %>
 <div class="row">
   <div class="col-md-1">
   </div>
-  <div class="col-md-5">
+  <div class="col-md-6">
     <h4>
       <strong><%= @company.name %></strong>
     </h4>
@@ -41,25 +39,14 @@
         </div>
       </div>
     </div>
-    <div id="map" style="width: 100%; height: 300px; border-radius: 5px;">
-    </div>
   </div>
-  <div class="col-md-2">
+  <div class="col-md-4">
     <h4>Empresas relacionadas:</h4>
     <ul>
-      <% Company.where(category: @company.category).shuffle[0..7].each do |related|%>
+      <% Company.where(category: @company.category).shuffle[0..9].each do |related|%>
         <li><%= link_to related.name, company_path(related.slug) %></li>
       <% end %>
       <li><%= link_to "Mais...", search_path(q: @company.category) %></li>
     </ul>
   </div>
 </div>
-<script>
-  mapboxgl.accessToken = '<%= ENV['MAP_ACCESS_TOKEN'] || Rails.application.credentials.maps_access_token %>';
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/outdoors-v11',
-    center: [32.6106835, -25.8962586], // Maputo for a while
-    zoom: 13
-  });
-</script>

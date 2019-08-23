@@ -30,8 +30,8 @@
         </div>
       <% end %>
     </div>
-    <div class="digg_pagination">
-      <%= will_paginate @results, previous_label: "<", next_label: ">" %>
+    <div>
+      <%= will_paginate @results, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails %>
     </div>
   </div>
 </div>

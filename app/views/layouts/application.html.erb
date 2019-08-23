@@ -3,7 +3,7 @@
   <head>
     <title>
       <%= if content_for?(:title) then yield(:title) + ' | ' end %>
-        Dr. Busca
+        OnCloud
       </title>
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
@@ -23,5 +23,6 @@
         </p>
       <% end %>
       <%= yield %>
+      <%= render "shared/footer"%>
     </body>
   </html>
