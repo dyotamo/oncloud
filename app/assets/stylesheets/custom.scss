@@ -2,13 +2,13 @@
 @import "bootstrap-sprockets";
 
 // Import cerulean variables
-@import "bootswatch/united/variables";
+@import "bootswatch/flatly/variables";
 
 // Then bootstrap itself
 @import "bootstrap";
 
 // And finally bootswatch style itself
-@import "bootswatch/united/bootswatch";
+@import "bootswatch/flatly/bootswatch";
 
 .field_with_errors {
   @extend .has-error;

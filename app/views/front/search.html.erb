@@ -1,37 +1,44 @@
 <% title "Resultados para " + @q %>
 <%= render "shared/header", value: @q %>
-<div class="row">
-  <div class="col-md-1">
-  </div>
-  <div class="col-md-6">
-    <% if @results.empty? %>
-      <h4>Não foram encontrados resultados para <strong><%= @q %></strong></h4>
-    <% else %>
-      <span>
-        Aproximadamente <%= pluralize(@results.count, 'resultado') %> (<%= number_with_precision(@exc.stime, precision: 6) %> segundos)
-      </span>
-    <% end %>
-    <div style="margin-top: 20px;">
-      <% @results.each do |company| %>
-        <div style="margin-bottom: 20px;">
-          <h4>
-            <%= link_to company.name, company_path(slug: company.slug) %>
-          </h4>
-          <div>
-            <%= company.address %>
-          </div>
-          <div>
-            <% if !company.description.empty? %>
-              <%= company.description %>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <%= render "shared/search", value: @q %>
+            <% if @results.empty? %>
+            <h4>Não foram encontrados resultados para <strong><%= @q %></strong></h4>
             <% else %>
-              (Sem detalhes) 
+            <span>
+                Foram encontrados <%= pluralize(@results.count, 'resultado') %> em <%= number_with_precision(@exc.stime, precision: 2) %> segundos
+            </span>
             <% end %>
-          </div>
+            <div style="margin-top: 20px;">
+                <% @results.each do |company| %>
+                <div style="margin-bottom: 20px;" class="panel panel-default">
+                    <div class="panel-body">
+                        <div>
+                            <%= company.website %>
+                        </div>
+                        <h4 style="font-weight: bold;">
+                            <%= link_to company.name, company_path(slug: company.slug) %>
+                        </h4>
+                        <div>
+                            <%= company.address %>
+                        </div>
+                        <div>
+                            <% if !company.description.empty? %>
+                            <%= company.description %>
+                            <% else %>
+                            (Sem detalhes)
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+            <div>
+                <%= will_paginate @results, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails %>
+            </div>
         </div>
-      <% end %>
     </div>
-    <div>
-      <%= will_paginate @results, previous_label: "<", next_label: ">", renderer: BootstrapPagination::Rails %>
-    </div>
-  </div>
 </div>

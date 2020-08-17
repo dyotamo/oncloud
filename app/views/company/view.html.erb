@@ -1,52 +1,53 @@
 <% title @company.name %>
-<%= render "shared/header", value: "" %>
-<div class="row">
-  <div class="col-md-1">
-  </div>
-  <div class="col-md-6">
-    <h4>
-      <strong><%= @company.name %></strong>
-    </h4>
-    <div class="well">
-      <div>
-        <div class="company-info-name"> Endereço </div>
-        <div class="company-info-value">
-          <span><%= @company.address %></span>
+<%= render "shared/header" %>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>
+                <strong><%= @company.name %></strong>
+            </h2>
+            <div class="well">
+                <div>
+                    <div class="company-info-name"> Endereço </div>
+                    <div class="company-info-value">
+                        <span><%= @company.address %></span>
+                    </div>
+                </div>
+                <div>
+                    <div class="company-info-name"> Cidade </div>
+                    <div class="company-info-value">
+                        <span><%= @company.city %></span>
+                    </div>
+                </div>
+                <div>
+                    <div class="company-info-name"> Segmento </div>
+                    <div class="company-info-value">
+                        <span><%= @company.category %></span>
+                    </div>
+                </div>
+                <div>
+                    <div class="company-info-name"> Website </div>
+                    <div class="company-info-value">
+                        <span><%= link_to @company.website, @company.website, target: "_blank" %></span>
+                    </div>
+                </div>
+                <div>
+                    <div class="company-info-name"> Descrição </div>
+                    <div class="company-info-value">
+                        <span><%= @company.description %></span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div>
-        <div class="company-info-name"> Cidade </div>
-        <div class="company-info-value">
-          <span><%= @company.city %></span>
+        <div class="col-md-4">
+            <h3>Empresas relacionadas:</h3>
+            <ul>
+                <% Company.where(category: @company.category).shuffle[0..9].each do |related|%>
+                <li><%= link_to related.name, company_path(related.slug) %></li>
+                <% end %>
+                <li><%= link_to "Mais...", search_path(q: @company.category) %></li>
+            </ul>
         </div>
-      </div>
-      <div>
-        <div class="company-info-name"> Segmento </div>
-        <div class="company-info-value">
-          <span><%= @company.category %></span>
-        </div>
-      </div>
-      <div>
-        <div class="company-info-name"> Website </div>
-        <div class="company-info-value">
-          <span><%= link_to @company.website, @company.website, target: "_blank" %></span>
-        </div>
-      </div>
-      <div>
-        <div class="company-info-name"> Descrição </div>
-        <div class="company-info-value">
-          <span><%= @company.description %></span>
-        </div>
-      </div>
     </div>
-  </div>
-  <div class="col-md-4">
-    <h4>Empresas relacionadas:</h4>
-    <ul>
-      <% Company.where(category: @company.category).shuffle[0..9].each do |related|%>
-        <li><%= link_to related.name, company_path(related.slug) %></li>
-      <% end %>
-      <li><%= link_to "Mais...", search_path(q: @company.category) %></li>
-    </ul>
-  </div>
 </div>
